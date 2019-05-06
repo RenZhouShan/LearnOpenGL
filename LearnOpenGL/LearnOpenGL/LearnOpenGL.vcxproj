@@ -84,8 +84,8 @@
     <LibraryPath>E:\GitHub\LearnOpenGL\LearnOpenGL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>E:\GitHub\LearnOpenGL\LearnOpenGL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\GitHub\LearnOpenGL\LearnOpenGL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\GitHub\LearnOpenGLProjects\LearnOpenGL\LearnOpenGL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\GitHub\LearnOpenGLProjects\LearnOpenGL\LearnOpenGL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
