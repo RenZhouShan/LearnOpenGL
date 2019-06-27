@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="stb_image.h" />
@@ -32,6 +33,8 @@
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="shader\lamp.fs" />
+    <None Include="shader\lamp.vs" />
     <None Include="shader\shader.fs" />
     <None Include="shader\shader.vs" />
   </ItemGroup>

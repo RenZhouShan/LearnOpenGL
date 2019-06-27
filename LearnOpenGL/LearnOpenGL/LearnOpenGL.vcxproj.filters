@@ -24,6 +24,9 @@
     <ClInclude Include="stb_image.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LearnOpenGL.rc">
@@ -44,5 +47,7 @@
   <ItemGroup>
     <None Include="shader\shader.fs" />
     <None Include="shader\shader.vs" />
+    <None Include="shader\lamp.fs" />
+    <None Include="shader\lamp.vs" />
   </ItemGroup>
 </Project>
