@@ -33,7 +33,7 @@ void main()
 
     vec3 norm = normalize(Normal);
     
-    vec3 lightDir = normalize(-light.direction);
+    vec3 lightDir = normalize(-light.direction);FragPos
     float diff = max(dot(norm, lightDir), 0.0);
     vec3 diffuse = light.diffuse * diff * texture(material.diffuse, TexCoords).rgb;
 
@@ -49,6 +49,6 @@ void main()
     diffuse   *= attenuation;
     specular *= attenuation;
 
-    vec3 result = ambient + diffuse + specular;
+    vec3 result = ambient + diffuse; + specular;
     FragColor = vec4(result, 1.0);
 }

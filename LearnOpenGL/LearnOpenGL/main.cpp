@@ -118,6 +118,7 @@ int main()
 		ourShader.setFloat("light.constant", 1.0f);
 		ourShader.setFloat("light.linear", 0.09f);
 		ourShader.setFloat("light.quadratic", 0.032f);
+		ourShader.setVec3("viewPos", camera.Position);
 
 		// render the loaded model
 		glm::mat4 model = glm::mat4(1.0f);
@@ -125,8 +126,6 @@ int main()
 		model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// it's a bit too big for our scene, so scale it down
 		ourShader.setMat4("model", model);
 		ourModel.Draw(ourShader);
-
-
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
