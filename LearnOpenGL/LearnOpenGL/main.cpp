@@ -140,7 +140,7 @@ int main()
 		ourShader.setMat4("model", model);
 		ourModel.Draw(ourShader);
 
-		scale = scale + scale * 0.005;
+		scale = scale + scale * 0.009;
 		shaderSingleColor.use();
 		glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
 		glStencilMask(0x00);

@@ -9,5 +9,4 @@ d:\mygit\learnopengl\learnopengl\learnopengl\main.cpp(211): warning C4244: “�
 d:\mygit\learnopengl\learnopengl\learnopengl\main.cpp(213): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
 d:\mygit\learnopengl\learnopengl\learnopengl\main.cpp(214): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
 d:\mygit\learnopengl\learnopengl\learnopengl\main.cpp(223): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-LINK : warning LNK4098: 
   LearnOpenGL.vcxproj -> D:\MyGit\LearnOpenGL\LearnOpenGL\x64\Debug\LearnOpenGL.exe
