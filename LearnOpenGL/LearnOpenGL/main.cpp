@@ -82,8 +82,10 @@ int main()
 	// render loop
 	// -----------
 	ourShader.use();
-	ourShader.setInt("material.diffuse", 0);
+	ourShader.setInt("material.diffuse", 1);
 	ourShader.setInt("material.specular", 1);
+	ourShader.setFloat("material.shininess", 0.7f);
+
 	while (!glfwWindowShouldClose(window))
 	{
 		// per-frame time logic
