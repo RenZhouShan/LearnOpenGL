@@ -66,10 +66,15 @@ int main()
 	// configure global opengl state
 	// -----------------------------
 	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+	glEnable(GL_STENCIL_TEST);
+	glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 	// build and compile shaders
 	// -------------------------
 	Shader ourShader("./shader/shader.vs", "./shader/shader.fs");
 	Shader lampShader("./shader/lamp.vs", "./shader/lamp.fs");
+	Shader shaderSingleColor("./shader/shaderSingleColor.vs", "./shader/shaderSingleColor.fs");
 
 	// load models
 	// -----------
@@ -82,9 +87,10 @@ int main()
 	// render loop
 	// -----------
 	ourShader.use();
-	ourShader.setInt("material.diffuse", 1);
+	ourShader.setInt("material.diffuse", 0);
 	ourShader.setInt("material.specular", 1);
 	ourShader.setFloat("material.shininess", 0.7f);
+	ourShader.setVec3("light.direction", -0.2f, -1.0f, -0.3f);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -105,6 +111,9 @@ int main()
 
 		// don't forget to enable shader before setting uniforms
 		ourShader.use();
+		glStencilFunc(GL_ALWAYS, 1, 0xFF);
+		glStencilMask(0xFF);
+		float scale = 1.0*0.2f;
 
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -113,14 +122,16 @@ int main()
 		ourShader.setMat4("view", view);
 		glm::vec3 lightPos = glm::vec3(0, 0, 3);
 		ourShader.setVec3("light.position", lightPos);
-		ourShader.setVec3("light.direction", -0.2f, -1.0f, -0.3f);
-		ourShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
+
+		ourShader.setVec3("light.ambient", 0.5f, 0.5f, 0.5f);
 		ourShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
 		ourShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+
 		ourShader.setFloat("light.constant", 1.0f);
 		ourShader.setFloat("light.linear", 0.09f);
 		ourShader.setFloat("light.quadratic", 0.032f);
 		ourShader.setVec3("viewPos", camera.Position);
+
 
 		// render the loaded model
 		glm::mat4 model = glm::mat4(1.0f);
@@ -128,6 +139,25 @@ int main()
 		model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// it's a bit too big for our scene, so scale it down
 		ourShader.setMat4("model", model);
 		ourModel.Draw(ourShader);
+
+		scale = scale + scale * 0.005;
+		shaderSingleColor.use();
+		glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+		glStencilMask(0x00);
+		glDisable(GL_DEPTH_TEST);
+		// view/projection transformations
+		projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+		view = camera.GetViewMatrix();
+		shaderSingleColor.setMat4("projection", projection);
+		shaderSingleColor.setMat4("view", view);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
+		model = glm::scale(model, glm::vec3(scale, scale, scale));
+		shaderSingleColor.setMat4("model", model);
+		ourModel.Draw(shaderSingleColor);
+		glStencilMask(0xFF);
+		glEnable(GL_DEPTH_TEST);
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);

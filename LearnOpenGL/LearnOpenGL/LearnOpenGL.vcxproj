@@ -40,6 +40,8 @@
     <None Include="shader\lamp.vs" />
     <None Include="shader\shader.fs" />
     <None Include="shader\shader.vs" />
+    <None Include="shader\shaderSingleColor.fs" />
+    <None Include="shader\shaderSingleColor.vs" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -58,5 +58,7 @@
     <None Include="shader\shader.vs" />
     <None Include="shader\lamp.fs" />
     <None Include="shader\lamp.vs" />
+    <None Include="shader\shaderSingleColor.fs" />
+    <None Include="shader\shaderSingleColor.vs" />
   </ItemGroup>
 </Project>
